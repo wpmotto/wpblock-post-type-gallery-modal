@@ -1,0 +1,17 @@
+.wp-block-create-block-post-type-gallery-modal {
+	.wp-ptgm-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2em;
+	}
+
+	.wp-ptgm-title {
+		margin: 0;
+	}
+
+	.wp-ptgm-img {
+		width: 100%;
+		height: auto;
+		margin-bottom: 1em;
+	}
+}
