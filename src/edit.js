@@ -23,6 +23,8 @@ export default function Edit({ setAttributes, attributes }) {
 	const [taxonomy, setTaxonomy] = useState(attributes.taxonomy ?? '');
 	const [terms, setTerms] = useState(attributes.terms ?? []);
 	const [perPage, setPerPage] = useState(attributes.postsPerPage ?? 12);
+	const [mediaSizes] = useState(new Set([]));
+	const [size, setSize] = useState(attributes.thumbnailSize ?? 'thumbnail');
 
 	const postTypeOptions = useSelect((select) => {
 		return select('core').getPostTypes({ per_page: -1 });
@@ -33,6 +35,11 @@ export default function Edit({ setAttributes, attributes }) {
 	const handleChangePostType = (value) => {
 		setPostType(value);
 		setAttributes({ postType: value });
+	}
+
+	const handleChangeSize = (value) => {
+		setSize(value);
+		setAttributes({ thumbnailSize: value });
 	}
 
 	const handleChangeTaxonomy = (value) => {
@@ -67,7 +74,10 @@ export default function Edit({ setAttributes, attributes }) {
 		})?.map(post => {
 			if (!post.featured_media) return post;
 
-			const thumbnail = select('core').getMedia(post.featured_media)
+			const thumbnail = select('core').getMedia(post.featured_media);
+
+			Object.keys(thumbnail?.media_details.sizes ?? {}).forEach(size => mediaSizes.add(size));
+
 			return { ...post, thumbnail }
 		});
 	}, [postType, perPage, terms]);
@@ -116,17 +126,29 @@ export default function Edit({ setAttributes, attributes }) {
 						numberOfItems={perPage}
 						onNumberOfItemsChange={handleChangePerPage}
 					/>
+
+					{mediaSizes.size > 0 && <SelectControl
+						label="Thumbnail Size"
+						options={[...mediaSizes].map(size => {
+							return { value: size, label: size }
+						})}
+						value={size}
+						onChange={handleChangeSize}
+					/>}
+
+
 				</PanelBody>
 			</InspectorControls>
 			{posts && posts.length > 0 ? <div className="wp-ptgm-container">
 				{posts.map(post => (
 					<div key={post.id}>
-						{post.thumbnail && <img className="wp-ptgm-img" src={post.thumbnail.media_details.sizes.thumbnail.source_url} alt={post.thumbnail.alt_text} />}
-						<h3 className="wp-ptgm-title">{post.title.rendered}</h3>
+						{post.thumbnail && <img className="wp-ptgm-img" src={post.thumbnail.media_details.sizes[size].source_url} alt={post.thumbnail.alt_text} />}
+						< h3 className="wp-ptgm-title" > {post.title.rendered}</h3>
 					</div>
-				))}
-			</div> : <p>No records to show.</p>}
+				))
+				}
+			</div > : <p>No records to show.</p>}
 
-		</div>
+		</div >
 	);
 }

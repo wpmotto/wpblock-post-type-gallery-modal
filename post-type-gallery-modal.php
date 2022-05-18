@@ -32,9 +32,10 @@ function ptgm_dynamic_render_callback($block_attributes)
 
 	$posts = get_posts($query);
 	$block_id = uniqid();
+
 	$posts_array = array_map(function ($post) use ($block_id) {
 		$title = get_the_title($post);
-		$thumbnail = get_the_post_thumbnail($post->ID, 'thumbnail', array('alt' => $title, 'class' => 'wp-ptgm-img'));
+		$thumbnail = get_the_post_thumbnail($post->ID, $block_attributes['thumbnailSize'], array('alt' => $title, 'class' => 'wp-ptgm-img'));
 		$featured_src = get_the_post_thumbnail_url($post->ID, 'large');
 
 		return sprintf(

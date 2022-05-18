@@ -38,6 +38,9 @@
 		},
 		"terms": {
 			"type": "array"
+		},
+		"thumbnailSize": {
+			"type": "string"
 		}
 	}
 }
