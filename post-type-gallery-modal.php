@@ -19,6 +19,8 @@ function ptgm_dynamic_render_callback($block_attributes)
 	$query = array(
 		'post_type' => $block_attributes['postType'],
 		'posts_per_page' => $block_attributes['postsPerPage'] ?? 12,
+		'order' => $block_attributes['order'],
+    	'orderby' => $block_attributes['orderBy']
 	);
 	if (!empty($block_attributes['terms'])) {
 		$query['tax_query'] = array(
