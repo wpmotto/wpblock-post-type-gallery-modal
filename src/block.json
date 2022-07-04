@@ -28,10 +28,24 @@
 	],
 	"attributes": {
 		"postType": {
-			"type": "string"
+			"type": "string",
+			"default": "post"
 		},
 		"postsPerPage": {
-			"type": "integer"
+			"type": "integer",
+			"default": 12
+		},
+		"order": {
+			"type": "string",
+			"default": "asc"
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "title"
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
 		},
 		"taxonomy": {
 			"type": "string"
@@ -40,7 +54,8 @@
 			"type": "array"
 		},
 		"thumbnailSize": {
-			"type": "string"
+			"type": "string",
+			"default": "thumbnail"
 		}
 	}
 }

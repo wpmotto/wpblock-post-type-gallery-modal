@@ -15,7 +15,7 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^23.0.0",
+		"@wordpress/scripts": "^23.3.0",
 		"glightbox": "^3.2.0"
 	}
 }

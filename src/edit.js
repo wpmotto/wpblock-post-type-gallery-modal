@@ -23,6 +23,8 @@ export default function Edit({ setAttributes, attributes }) {
 	const [taxonomy, setTaxonomy] = useState(attributes.taxonomy ?? '');
 	const [terms, setTerms] = useState(attributes.terms ?? []);
 	const [perPage, setPerPage] = useState(attributes.postsPerPage ?? 12);
+	const [order, setOrder] = useState(attributes.order ?? 'asc');
+	const [orderBy, setOrderBy] = useState(attributes.orderBy ?? 'title');
 	const [mediaSizes] = useState(new Set([]));
 	const [size, setSize] = useState(attributes.thumbnailSize ?? 'thumbnail');
 
@@ -50,6 +52,16 @@ export default function Edit({ setAttributes, attributes }) {
 	const handleChangePerPage = (numberOfItems) => {
 		setPerPage(numberOfItems);
 		setAttributes({ postsPerPage: numberOfItems });
+	}
+
+	const handleChangeOrder = (order) => {
+		setOrder(order);
+		setAttributes({ order });
+	}
+
+	const handleChangeOrderBy = (orderBy) => {
+		setOrderBy(orderBy);
+		setAttributes({ orderBy });
 	}
 
 	const handleAddTerm = (value, term) => {
@@ -123,7 +135,11 @@ export default function Edit({ setAttributes, attributes }) {
 					)}
 
 					<QueryControls
+						order={order}
+						orderBy={orderBy}
 						numberOfItems={perPage}
+						onOrderChange={handleChangeOrder}
+						onOrderByChange={handleChangeOrderBy}
 						onNumberOfItemsChange={handleChangePerPage}
 					/>
 

@@ -1,46 +1,61 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
-	"name": "create-block/post-type-gallery-modal",
-	"version": "0.1.0",
-	"title": "Post Type Gallery Modal",
-	"category": "widgets",
-	"icon": "screenoptions",
-	"keywords": [
-		"motto",
-		"gallery",
-		"post types",
-		"modal",
-		"lightbox"
-	],
-	"description": "Block for displaying post types as a gallery that opens a modal.",
-	"supports": {
-		"html": false,
-		"align": true
-	},
-	"textdomain": "post-type-gallery-modal",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"script": "file:./frontend.js",
-	"style": [
-		"file:./style-index.css",
-		"file:./frontend.css"
-	],
-	"attributes": {
-		"postType": {
-			"type": "string"
-		},
-		"postsPerPage": {
-			"type": "integer"
-		},
-		"taxonomy": {
-			"type": "string"
-		},
-		"terms": {
-			"type": "array"
-		},
-		"thumbnailSize": {
-			"type": "string"
-		}
-	}
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/post-type-gallery-modal",
+  "version": "0.1.0",
+  "title": "Post Type Gallery Modal",
+  "category": "widgets",
+  "icon": "screenoptions",
+  "keywords": [
+    "motto",
+    "gallery",
+    "post types",
+    "modal",
+    "lightbox"
+  ],
+  "description": "Block for displaying post types as a gallery that opens a modal.",
+  "supports": {
+    "html": false,
+    "align": true
+  },
+  "textdomain": "post-type-gallery-modal",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "script": "file:./frontend.js",
+  "style": [
+    "file:./style-index.css",
+    "file:./frontend.css"
+  ],
+  "attributes": {
+    "postType": {
+      "type": "string",
+      "default": "post"
+    },
+    "postsPerPage": {
+      "type": "integer",
+      "default": 12
+    },
+    "order": {
+      "type": "string",
+      "default": "asc"
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "title"
+    },
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
+    "taxonomy": {
+      "type": "string"
+    },
+    "terms": {
+      "type": "array"
+    },
+    "thumbnailSize": {
+      "type": "string",
+      "default": "thumbnail"
+    }
+  }
 }
