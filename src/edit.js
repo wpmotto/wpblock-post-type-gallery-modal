@@ -158,7 +158,7 @@ export default function Edit({ setAttributes, attributes }) {
 			{posts && posts.length > 0 ? <div className="wp-ptgm-container">
 				{posts.map(post => (
 					<div key={post.id}>
-						{post.thumbnail && <img className="wp-ptgm-img" src={post.thumbnail.media_details.sizes[size].source_url} alt={post.thumbnail.alt_text} />}
+						{post.thumbnail && <img className="wp-ptgm-img" src={post.thumbnail.media_details.sizes[size] ? post.thumbnail.media_details.sizes[size].source_url : ''} alt={post.thumbnail.alt_text} />}
 						< h3 className="wp-ptgm-title" > {post.title.rendered}</h3>
 					</div>
 				))
