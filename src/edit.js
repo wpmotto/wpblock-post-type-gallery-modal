@@ -56,12 +56,12 @@ export default function Edit({ setAttributes, attributes }) {
 
 	const handleChangeOrder = (order) => {
 		setOrder(order);
-		setAttributes({ order });
+		setAttributes({ order: order });
 	}
 
 	const handleChangeOrderBy = (orderBy) => {
 		setOrderBy(orderBy);
-		setAttributes({ orderBy });
+		setAttributes({ orderBy: orderBy });
 	}
 
 	const handleAddTerm = (value, term) => {
@@ -82,6 +82,8 @@ export default function Edit({ setAttributes, attributes }) {
 	const posts = useSelect((select) => {
 		return select('core').getEntityRecords('postType', postType, {
 			per_page: perPage,
+			order: order,
+			orderby: orderBy,
 			[taxonomy]: terms.map(i => i.id),
 		})?.map(post => {
 			if (!post.featured_media) return post;
@@ -92,7 +94,7 @@ export default function Edit({ setAttributes, attributes }) {
 
 			return { ...post, thumbnail }
 		});
-	}, [postType, perPage, terms]);
+	}, [postType, perPage, terms, order, orderBy]);
 
 	const availableTerms = useSelect((select) => {
 		return select('core').getEntityRecords('taxonomy', taxonomy);
